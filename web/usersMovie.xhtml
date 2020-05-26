@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+<h:head></h:head>
+<h:body>
+    <h:form>
+        <p:dataTable id="table" value="#{userManager.getMovies()}" var="movie" widgetVar="userWidget"
+                     emptyMessage="No movies found">
+            <p:column headerText="Title">
+                <center>
+                    #{movie.title}
+                </center>
+            </p:column>
+            <p:column headerText="URI">
+                <center>
+                    #{movie.url}
+                </center>
+            </p:column>
+            <p:column headerText="Action">
+                <center>
+                    <h:commandButton value="Delete" action="#{userManager.deleteMovieFromUserList(movie.getId())}"/>
+                </center>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    <center>
+        <h:form>
+            <h:selectOneMenu value="#{userManager.id_movie}" style="font-size: 30px">
+                <f:selectItems value="#{movieManager.getAll()}" var="selectMovie" itemValue="#{selectMovie.id}" itemLabel="#{selectMovie.title}"/>
+            </h:selectOneMenu>
+            <h:commandButton value="Add" action="#{userManager.addMovie()}" style="font-size: 30px"/>
+        </h:form>
+        <br/>
+        <h:form>
+            <h:commandButton value="Back" action="user" style="font-size: 30px"/>
+        </h:form>
+    </center>
+</h:body>
+</html>

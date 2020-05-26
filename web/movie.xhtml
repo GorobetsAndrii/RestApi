@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+<h:head></h:head>
+<h:body>
+    <h:form>
+        <p:dataTable id="table" value="#{movieManager.getAll()}" var="movie" widgetVar="userWidget"
+                     emptyMessage="No user found">
+            <p:column headerText="Title">
+                <center>
+                    #{movie.title}
+                </center>
+            </p:column>
+            <p:column headerText="URI">
+                <center>
+                    #{movie.url}
+                </center>
+            </p:column>
+            <p:column headerText="Action">
+                <center>
+                    <h:commandButton value="Update" action="#{movieManager.go2Update(movie)}"/>
+                    <h:commandButton value="Delete" action="#{movieManager.deleteMovie(movie.id)}"/>
+                </center>
+            </p:column>
+        </p:dataTable>
+        <br/><br/>
+        <center>
+            <h:commandButton value="Create movie" action="createMovie" style="font-size: 30px"/><br/><br/>
+            <h:commandButton value="Back" action="index" style="font-size: 30px"/>
+        </center>
+    </h:form>
+</h:body>
+</html>
